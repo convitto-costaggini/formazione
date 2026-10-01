@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link rapidi · Formazione Convitto</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+<a class="logo" href="index.html">Formazione <em>Convitto</em></a>
+<nav class="menu" aria-label="Menu principale"><a href="presentazione/" class=""><span class="n">1</span>Presentazione del sito</a><a href="guida.html" class=""><span class="n">2</span>Guida al gestionale</a><a href="link.html" class="on"><span class="n">3</span>Link rapidi</a></nav>
+</div></header>
+<main>
+
+<div class="eyebrow">Link rapidi</div>
+<h1>Tutti gli indirizzi</h1>
+<p class="lead">Tocca il pulsante per aprire, oppure <b>Copia</b> per incollare l'indirizzo dove serve. I codici QR si inquadrano con la fotocamera.</p>
+<div class="box avviso"><h3>Prima di tutto: incognito</h3><p style="margin:0">Sul telefono apri questi link da una <b>scheda in incognito</b> (Android) o in <b>navigazione privata</b> (iPhone). Come fare: <a href="guida.html#passo1">guida, passo 1</a>.</p></div>
+
+<div class="box"><div class="linkcard"><div>
+<div class="eyebrow">1 · Il gioco</div><h2>Missione Convitto</h2>
+<p>Scegli il tuo nome, vedi utente e password, i tuoi convittori e le missioni.</p>
+<a class="bigbtn oro" href="https://script.google.com/macros/s/AKfycbwbzcWAxeBYj1xvnG-Ly36ESZbs9Nc4edSUDGu5kDnaiJJKUWfNtBQO44naO7oNoa5a/exec" target="_blank" rel="noopener">▶ Apri il gioco</a>
+<div class="url"><code>https://script.google.com/macros/s/AKfycbwbzcWAxeBYj1xvnG-Ly36ESZbs9Nc4edSUDGu5kDnaiJJKUWfNtBQO44naO7oNoa5a/exec</code><button type="button" data-copia="https://script.google.com/macros/s/AKfycbwbzcWAxeBYj1xvnG-Ly36ESZbs9Nc4edSUDGu5kDnaiJJKUWfNtBQO44naO7oNoa5a/exec">Copia</button></div>
+</div><img class="qr" src="img/qr-gioco.svg" alt="Codice QR del gioco"></div></div>
+
+<div class="box"><div class="linkcard"><div>
+<div class="eyebrow">2 · Il gestionale</div><h2>Gestionale di prova</h2>
+<p>Qui fai le missioni. Solo convittori inventati: puoi provare tutto.</p>
+<a class="bigbtn" href="https://script.google.com/macros/s/AKfycbxI06OCfmzpYocQXN3thdCiEPBS1V67ezb0kUG4l_iO-R5T8NuPgMXZ4-6rFHvqXICYvg/exec" target="_blank" rel="noopener">▶ Apri il gestionale di prova</a>
+<div class="url"><code>https://script.google.com/macros/s/AKfycbxI06OCfmzpYocQXN3thdCiEPBS1V67ezb0kUG4l_iO-R5T8NuPgMXZ4-6rFHvqXICYvg/exec</code><button type="button" data-copia="https://script.google.com/macros/s/AKfycbxI06OCfmzpYocQXN3thdCiEPBS1V67ezb0kUG4l_iO-R5T8NuPgMXZ4-6rFHvqXICYvg/exec">Copia</button></div>
+</div><img class="qr" src="img/qr-gestionale.svg" alt="Codice QR del gestionale di prova"></div></div>
+
+<div class="box"><div class="linkcard"><div>
+<div class="eyebrow">3 · Questo sito</div><h2>Formazione Convitto</h2>
+<p>L'indirizzo da scrivere nella scheda in incognito:</p>
+<p><span class="cred" style="font-size:20px">convitto-costaggini.github.io/formazione</span></p>
+<div class="url"><code>https://convitto-costaggini.github.io/formazione/</code><button type="button" data-copia="https://convitto-costaggini.github.io/formazione/">Copia</button></div>
+</div><img class="qr" src="img/qr-sito.svg" alt="Codice QR di questo sito"></div></div>
+
+<div class="box"><h3>Il sito vero del Convitto</h3>
+<p>Quello illustrato nella presentazione: <a href="https://convitto.alberghierorieti.edu.it/" target="_blank" rel="noopener">convitto.alberghierorieti.edu.it</a></p></div>
+
+</main>
+<footer>Convitto "R. A. Costaggini" · Formazione del personale educativo · A.S. 2026/2027<br>
+<a href="index.html">Home</a> · <a href="formatore.html">Area del formatore</a></footer>
+<div class="toast" id="toast">Copiato</div>
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-copia]'); if(!b) return;
+  var t=b.getAttribute('data-copia');
+  function ok(){var x=document.getElementById('toast');x.classList.add('on');setTimeout(function(){x.classList.remove('on')},1500);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){prompt('Copia questo indirizzo:',t)});}
+  else prompt('Copia questo indirizzo:',t);
+});
+</script>
+</body>
+</html>

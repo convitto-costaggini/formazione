@@ -1,0 +1,112 @@
+/* Formazione Convitto Costaggini: foglio di stile comune */
+:root{
+  --bosco:#1c2e21; --bosco2:#2c4632; --oro:#b8922a; --oro-chiaro:#e6cf8f;
+  --carta:#faf7f0; --bianco:#ffffff; --inchiostro:#1d231e; --grigio:#5b635c; --linea:#e3dccb;
+  --rosso:#c62828; --rosso-chiaro:#fdecea; --verde:#2e7d32; --verde-chiaro:#e8f5e9; --blu:#1f3b8a; --blu-chiaro:#e8eefb;
+  --f-display:"Cormorant Garamond", Georgia, serif;
+  --f-testo:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--f-testo);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--blu)}
+img{max-width:100%;height:auto;display:block}
+
+/* barra in alto */
+.top{position:sticky;top:0;z-index:50;background:var(--bosco);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.top-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
+.logo{font-family:var(--f-display);font-size:24px;color:#fff;text-decoration:none;white-space:nowrap;margin-right:auto}
+.logo em{color:var(--oro-chiaro)}
+.menu{display:flex;gap:6px;flex-wrap:wrap}
+.menu a{color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:9px 13px;border-radius:8px;border:1px solid rgba(230,207,143,.35);background:rgba(255,255,255,.04)}
+.menu a:hover,.menu a:focus-visible{background:rgba(230,207,143,.18)}
+.menu a.on{background:var(--oro);color:var(--bosco);border-color:var(--oro)}
+.menu .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--oro-chiaro);color:var(--bosco);font-size:13px;margin-right:6px}
+.menu a.on .n{background:var(--bosco);color:var(--oro-chiaro)}
+
+main{max-width:900px;margin:0 auto;padding:28px 16px 80px}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.05;margin:6px 0 12px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,4.5vw,38px);line-height:1.1;margin:0 0 10px;text-wrap:balance}
+h3{font-size:21px;margin:0 0 6px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--oro)}
+.lead{font-size:20px;color:var(--grigio);max-width:40em}
+
+/* riquadri */
+.box{background:var(--bianco);border:1px solid var(--linea);border-radius:16px;padding:22px;margin:22px 0}
+.avviso{border-left:6px solid var(--rosso);background:var(--rosso-chiaro)}
+.ok{border-left:6px solid var(--verde);background:var(--verde-chiaro)}
+.info{border-left:6px solid var(--blu);background:var(--blu-chiaro)}
+.avviso h3,.ok h3,.info h3{margin-top:0}
+
+/* sezione passo */
+.passo{scroll-margin-top:90px;margin:44px 0}
+.passo-tit{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.num{flex:none;width:52px;height:52px;border-radius:50%;background:var(--bosco);color:var(--oro-chiaro);display:grid;place-items:center;font-family:var(--f-display);font-size:30px;font-weight:600}
+
+/* elenchi numerati grandi */
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:12px 12px 12px 58px;margin:8px 0;background:var(--bianco);border:1px solid var(--linea);border-radius:12px}
+ol.steps>li::before{content:counter(s);position:absolute;left:12px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--rosso);color:#fff;font-weight:800;display:grid;place-items:center;font-size:17px}
+ol.steps>li b.btn-name{background:var(--bosco);color:#fff;padding:1px 8px;border-radius:6px;font-weight:700;white-space:nowrap}
+
+/* figure */
+figure{margin:16px 0}
+figure img{border-radius:12px;border:1px solid var(--linea);box-shadow:0 6px 20px rgba(0,0,0,.08);background:#fff}
+figure.tel img{max-width:340px}
+figcaption{font-size:15px;color:var(--grigio);margin-top:8px}
+
+/* pulsanti grandi */
+.bigbtn{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;text-decoration:none;font-weight:800;font-size:19px;padding:16px 20px;border-radius:14px;background:var(--bosco);color:#fff;border:0;cursor:pointer;width:100%;max-width:520px}
+.bigbtn.oro{background:linear-gradient(135deg,var(--oro-chiaro),var(--oro));color:var(--bosco)}
+.bigbtn.rosso{background:var(--rosso)}
+.bigbtn:focus-visible{outline:4px solid var(--oro);outline-offset:3px}
+
+/* tessere home */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin:26px 0}
+.tile{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;background:var(--bianco);border:2px solid var(--linea);border-radius:18px;padding:22px;transition:border-color .2s,transform .2s}
+.tile:hover,.tile:focus-visible{border-color:var(--oro);transform:translateY(-2px)}
+.tile .big{font-family:var(--f-display);font-size:54px;line-height:1;color:var(--oro)}
+.tile h3{font-size:24px}
+.tile p{margin:0;color:var(--grigio);font-size:16px}
+.tile .vai{margin-top:auto;font-weight:800;color:var(--bosco)}
+
+/* scheda link */
+.linkcard{display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:center}
+.linkcard .qr{width:170px;height:170px}
+.url{display:flex;gap:8px;align-items:stretch;margin:12px 0}
+.url code{flex:1;min-width:0;background:#f3efe3;border:1px solid var(--linea);border-radius:8px;padding:10px;font-size:13px;overflow-wrap:anywhere}
+.url button{flex:none;border:0;border-radius:8px;background:var(--oro);color:var(--bosco);font-weight:800;padding:0 16px;cursor:pointer;font-size:15px}
+.cred{font-family:ui-monospace,Consolas,monospace;background:#f3efe3;padding:2px 8px;border-radius:6px;font-weight:700}
+
+/* missioni */
+.missione{border:2px solid var(--linea);border-radius:16px;background:var(--bianco);padding:20px;margin:22px 0;scroll-margin-top:90px}
+.missione .testa{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.pt{font-weight:800;color:var(--verde);background:var(--verde-chiaro);border-radius:30px;padding:3px 12px;font-size:15px;white-space:nowrap}
+.missione .cosa{font-size:19px;margin:6px 0 4px}
+
+.indice{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.indice a{font-size:15px;font-weight:700;text-decoration:none;background:var(--bianco);border:1px solid var(--linea);border-radius:30px;padding:6px 12px;color:var(--bosco)}
+
+details{background:var(--bianco);border:1px solid var(--linea);border-radius:12px;padding:14px 16px;margin:10px 0}
+details summary{font-weight:800;cursor:pointer;font-size:18px}
+details[open] summary{margin-bottom:8px}
+
+footer{text-align:center;color:var(--grigio);font-size:14px;padding:30px 16px;border-top:1px solid var(--linea)}
+footer a{color:var(--grigio)}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--verde);color:#fff;font-weight:800;padding:12px 20px;border-radius:30px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:99}
+.toast.on{opacity:1}
+
+@media (max-width:640px){
+  body{font-size:17px}
+  .linkcard{grid-template-columns:1fr}
+  .linkcard .qr{width:150px;height:150px}
+  .menu a{font-size:14px;padding:8px 10px}
+  .logo{font-size:21px;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.cred{overflow-wrap:anywhere;word-break:break-word}
+.linkcard>div{min-width:0}
+ol.steps>li{overflow-wrap:anywhere}
+@media (max-width:640px){ol.steps>li b.btn-name{white-space:normal}}

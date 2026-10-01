@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area del formatore · Formazione Convitto</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+<a class="logo" href="index.html">Formazione <em>Convitto</em></a>
+<nav class="menu" aria-label="Menu principale"><a href="presentazione/" class=""><span class="n">1</span>Presentazione del sito</a><a href="guida.html" class=""><span class="n">2</span>Guida al gestionale</a><a href="link.html" class=""><span class="n">3</span>Link rapidi</a></nav>
+</div></header>
+<main>
+
+<div class="eyebrow">Area del formatore</div>
+<h1>Promemoria per chi conduce il corso</h1>
+<p class="lead">Questa pagina non contiene il PIN: il proiettore si apre aggiungendolo in fondo all'indirizzo.</p>
+
+<div class="box"><h3>Pagina del proiettore</h3>
+<p>Indirizzo del gioco seguito da <span class="cred">?v=aula&amp;pin=</span> e dal tuo PIN:</p>
+<div class="url"><code>https://script.google.com/macros/s/AKfycbwbzcWAxeBYj1xvnG-Ly36ESZbs9Nc4edSUDGu5kDnaiJJKUWfNtBQO44naO7oNoa5a/exec?v=aula&pin=</code><button type="button" data-copia="https://script.google.com/macros/s/AKfycbwbzcWAxeBYj1xvnG-Ly36ESZbs9Nc4edSUDGu5kDnaiJJKUWfNtBQO44naO7oNoa5a/exec?v=aula&pin=">Copia base</button></div>
+<p style="margin:0">Incolla nel browser del PC collegato al proiettore e aggiungi il PIN alla fine.</p></div>
+
+<h2>Prima del corso (10 minuti)</h2>
+<ol class="steps">
+<li>Apri la pagina del proiettore: controlla che classifica e riquadro "In diretta" siano vuoti. Se non lo sono, tocca <b class="btn-name">Azzera tutto</b> due volte.</li>
+<li>Dal telefono, in incognito, entra con un corsista, segna una colazione e controlla che compaia sul proiettore. Poi <b>Azzera tutto</b>.</li>
+<li>Apri la presentazione del sito su un secondo schermo o in un'altra scheda.</li>
+</ol>
+
+<h2>Durante il corso</h2>
+<ol class="steps">
+<li>Proietta questo sito e dai l'indirizzo breve <span class="cred">convitto-costaggini.github.io/formazione</span> da aprire in incognito.</li>
+<li>Avvia il timer (<b>Timer 30'</b>) quando tutti sono entrati nel gestionale.</li>
+<li>Ogni 5-6 minuti tocca <b class="btn-name">⚡ Lancia imprevisto</b>. Si chiude da solo alla scadenza, oppure con <b>Chiudi imprevisto</b>.</li>
+<li>La posta simulata a destra mostra le email che il gestionale avrebbe inviato: nessuna parte davvero.</li>
+</ol>
+<figure><img src="img/proiettore.jpg" alt="Pagina del proiettore con classifica e imprevisto" loading="lazy"><figcaption>La pagina del proiettore (esempio).</figcaption></figure>
+
+<h2>Dopo il corso</h2>
+<ol class="steps">
+<li>Tocca <b class="btn-name">Azzera tutto</b> due volte: convittori, note, uscite e punteggi tornano allo stato iniziale.</li>
+<li>Se non servono altri corsi a breve, nei progetti Apps Script "Registro Convitto - PROVA" e "Missione Convitto" puoi archiviare i deployment (Esegui il deployment › Gestisci deployment › Archivia).</li>
+</ol>
+
+<div class="box info"><h3>Manutenzione (solo dall'editor Apps Script)</h3>
+<ul style="margin:0">
+<li><b>sistemaCorsisti</b> (progetto Missione Convitto): dopo aver aggiunto o rinominato colleghi in FORM_Corsisti.</li>
+<li><b>creaAccountFormazione2</b> (progetto PROVA): dopo sistemaCorsisti, per creare gli account nuovi.</li>
+<li><b>sbloccaOrariProva</b> (progetto PROVA): se il gestionale di prova blocca i pasti per orario.</li>
+<li><b>aggiornaImprevisti</b> (progetto Missione Convitto): ripristina l'elenco degli imprevisti.</li>
+</ul></div>
+
+</main>
+<footer>Convitto "R. A. Costaggini" · Formazione del personale educativo · A.S. 2026/2027<br>
+<a href="index.html">Home</a> · <a href="formatore.html">Area del formatore</a></footer>
+<div class="toast" id="toast">Copiato</div>
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-copia]'); if(!b) return;
+  var t=b.getAttribute('data-copia');
+  function ok(){var x=document.getElementById('toast');x.classList.add('on');setTimeout(function(){x.classList.remove('on')},1500);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){prompt('Copia questo indirizzo:',t)});}
+  else prompt('Copia questo indirizzo:',t);
+});
+</script>
+</body>
+</html>

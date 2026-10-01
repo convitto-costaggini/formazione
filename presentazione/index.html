@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Il sito del Convitto · Presentazione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: palcoscenico 16:9 (1600x900 logici) scalato a tutto schermo; ogni slide è una "inquadratura" con camera che zooma sugli screenshot reali del sito. Tema unico scuro, pensato per il proiettore, nei colori istituzionali del sito (bosco + oro). */
+:root{
+  --bosco:#16241a; --bosco2:#1f3324; --bosco3:#2c4632;
+  --oro:#c9a24a; --oro-chiaro:#e6cf8f; --crema:#f4efe3; --crema-dim:#b9b4a6;
+  --ombra:rgba(6,12,8,.72);
+  --f-display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --f-testo:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%;}
+[hidden]{display:none!important;}
+body{margin:0;background:var(--bosco);color:var(--crema);font-family:var(--f-testo);overflow:hidden;-webkit-font-smoothing:antialiased;}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,var(--bosco2),#0c150f 75%);}
+#stage{position:relative;width:1600px;height:900px;transform-origin:center center;flex:none;overflow:hidden;background:var(--bosco);box-shadow:0 30px 120px rgba(0,0,0,.6);}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease, transform .9s cubic-bezier(.2,.7,.2,1), visibility 0s linear .7s;transform:scale(1.04);}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s ease, transform .9s cubic-bezier(.2,.7,.2,1), visibility 0s;}
+.slide.out{transform:scale(.97);}
+
+/* tipografia */
+.eyebrow{font-size:15px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);display:flex;align-items:center;gap:14px;}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--oro);}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;margin:0;text-wrap:balance;line-height:1.02;}
+h1{font-size:112px;}
+h2{font-size:64px;}
+h3{font-size:34px;}
+em{font-style:italic;color:var(--oro-chiaro);}
+p{margin:0;line-height:1.5;}
+.lead{font-size:26px;color:var(--crema-dim);max-width:30em;}
+
+/* entrate a cascata */
+.rise{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .9s cubic-bezier(.2,.7,.2,1);}
+.slide.on .rise{opacity:1;transform:none;}
+.slide.on .rise.d1{transition-delay:.15s}.slide.on .rise.d2{transition-delay:.3s}.slide.on .rise.d3{transition-delay:.45s}.slide.on .rise.d4{transition-delay:.6s}.slide.on .rise.d5{transition-delay:.75s}.slide.on .rise.d6{transition-delay:.9s}
+
+/* TITOLO */
+.bgimg{position:absolute;inset:-4%;background-size:cover;background-position:center;filter:saturate(.8);}
+.slide.on .bgimg.kb{animation:kb 22s ease-in-out infinite alternate;}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-2%,-1.5%)}}
+.veil{position:absolute;inset:0;background:linear-gradient(100deg,rgba(12,21,15,.96) 0%,rgba(12,21,15,.82) 45%,rgba(12,21,15,.35) 100%);}
+.title-wrap{position:absolute;left:120px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:30px;max-width:980px;}
+.title-wrap h1 span{display:inline-block;opacity:0;transform:translateY(40px) rotate(2deg);transition:opacity .9s ease, transform 1s cubic-bezier(.2,.7,.2,1);}
+.slide.on .title-wrap h1 span{opacity:1;transform:none;}
+.goldline{height:2px;width:0;background:linear-gradient(90deg,var(--oro),transparent);transition:width 1.6s cubic-bezier(.2,.7,.2,1) .6s;}
+.slide.on .goldline{width:520px;}
+.byline{font-size:20px;letter-spacing:.08em;color:var(--crema-dim);}
+.byline b{color:var(--crema);font-weight:600;}
+.url{font-family:var(--f-testo);font-size:19px;color:var(--oro-chiaro);letter-spacing:.04em;}
+
+/* CAPITOLO */
+.chap{position:absolute;inset:0;display:grid;grid-template-columns:520px 1fr;align-items:center;padding:0 120px;gap:40px;}
+.chap .num{font-family:var(--f-display);font-size:360px;line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--oro);opacity:0;transform:translateX(-60px);transition:all 1.1s cubic-bezier(.2,.7,.2,1);}
+.slide.on .chap .num{opacity:.9;transform:none;}
+.chap .txt{display:flex;flex-direction:column;gap:22px;}
+.chap h2{font-size:96px;}
+.bgimg.dim{filter:blur(7px) saturate(.5) brightness(.3);}
+
+/* SCHERMATA (shot) */
+.shot{position:absolute;inset:0;display:grid;grid-template-columns:1010px 1fr;gap:44px;padding:56px 56px 60px 64px;align-items:center;}
+.side{max-height:780px;}
+.browser{position:relative;width:1010px;border-radius:14px;overflow:hidden;background:#0c150f;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(201,162,74,.25);}
+.bar{height:38px;display:flex;align-items:center;gap:8px;padding:0 16px;background:#233a29;}
+.bar i{width:11px;height:11px;border-radius:50%;background:#48604e;display:block;}
+.bar .addr{margin-left:14px;flex:1;height:22px;border-radius:11px;background:#16241a;font-size:12.5px;color:var(--crema-dim);display:flex;align-items:center;padding:0 12px;letter-spacing:.02em;}
+.vp{position:relative;width:1010px;height:631px;overflow:hidden;}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0;transition:transform 1.4s cubic-bezier(.45,.05,.2,1);}
+.cam img{width:1440px;height:900px;display:block;}
+.spot{position:absolute;border-radius:10px;box-shadow:0 0 0 3000px rgba(6,12,8,.58),0 0 0 2px var(--oro),0 0 30px rgba(201,162,74,.55);transition:all 1.4s cubic-bezier(.45,.05,.2,1);pointer-events:none;}
+.spot.off{box-shadow:0 0 0 3000px rgba(6,12,8,0),0 0 0 2px rgba(201,162,74,0);}
+.spot::after{content:"";position:absolute;inset:-2px;border-radius:12px;border:2px solid var(--oro);opacity:0;}
+.spot.pulse::after{animation:pulse 1.6s ease-out 1.3s 2;}
+@keyframes pulse{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.08)}}
+.side{display:flex;flex-direction:column;gap:22px;min-width:0;}
+.side h2{font-size:50px;}
+.steps{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.steps li{font-size:18.5px;line-height:1.4;color:var(--crema-dim);padding:8px 0 8px 18px;border-left:2px solid rgba(201,162,74,.18);opacity:.28;transform:translateX(10px);transition:all .6s ease;}
+.steps li b{color:var(--crema);font-weight:600;}
+.steps li.seen{opacity:.55;transform:none;}
+.steps li.cur{opacity:1;transform:none;border-left-color:var(--oro);color:var(--crema);}
+.steps li.cur b{color:var(--oro-chiaro);}
+
+/* MOSAICO */
+.mosaic{position:absolute;inset:0;padding:64px 80px;display:flex;flex-direction:column;gap:28px;}
+.tiles{display:grid;gap:26px;flex:1;min-height:0;perspective:1600px;}
+.tiles.c4{grid-template-columns:repeat(2,1fr);}
+.tiles.c6{grid-template-columns:repeat(3,1fr);}
+.tile{position:relative;border-radius:12px;overflow:hidden;background:#0c150f;box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 0 1px rgba(201,162,74,.2);opacity:0;transform:translateY(60px) rotateX(18deg);transition:opacity .8s ease, transform 1s cubic-bezier(.2,.7,.2,1);}
+.slide.on .tile{opacity:1;transform:none;}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 6s ease;}
+.tile:hover img{transform:scale(1.08);}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 14px;background:linear-gradient(transparent,rgba(8,14,10,.94));font-size:17px;line-height:1.35;color:var(--crema);}
+.tile figcaption b{display:block;font-family:var(--f-display);font-size:26px;font-weight:500;color:var(--oro-chiaro);}
+
+/* TELEFONI */
+.phones{position:absolute;inset:0;padding:56px 80px 64px;display:flex;flex-direction:column;gap:18px;}
+.prow{display:flex;justify-content:center;gap:38px;flex:1;align-items:center;}
+.phone{width:262px;border-radius:40px;padding:12px;background:#0b110d;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1.5px #3c5442;opacity:0;transform:translateY(90px);transition:opacity .9s ease, transform 1.1s cubic-bezier(.2,.7,.2,1);}
+.slide.on .phone{opacity:1;transform:none;}
+.phone .scr{border-radius:30px;overflow:hidden;height:540px;}
+.phone img{width:100%;display:block;}
+.phone.scroll img{animation:none;}
+.slide.on .phone.scroll img{animation:pscroll 14s ease-in-out 1.5s infinite alternate;}
+@keyframes pscroll{from{transform:translateY(0)}to{transform:translateY(-10%)}}
+.phone .cap{font-size:16px;color:var(--crema-dim);text-align:center;margin-top:14px;}
+
+/* CONFRONTO */
+.compare{position:absolute;inset:0;padding:60px 80px;display:grid;grid-template-columns:1fr 420px;gap:50px;align-items:center;}
+.cmp{position:relative;width:1000px;height:625px;border-radius:14px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(201,162,74,.25);cursor:ew-resize;touch-action:none;}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;}
+.cmp .after{clip-path:inset(0 0 0 50%);}
+.cmp .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--oro);transform:translateX(-1.5px);}
+.cmp .handle::after{content:"◀ ▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--oro);color:var(--bosco);font-size:13px;font-weight:700;padding:10px 12px;border-radius:30px;white-space:nowrap;}
+.cmp .lab{position:absolute;top:16px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(8,14,10,.8);padding:6px 12px;border-radius:4px;}
+.cmp .lab.l{left:16px}.cmp .lab.r{right:16px;color:var(--oro-chiaro);}
+
+/* TESTO a schede */
+.cards{position:absolute;inset:0;padding:90px 110px;display:flex;flex-direction:column;gap:46px;}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+.card{border-top:2px solid var(--oro);padding-top:26px;display:flex;flex-direction:column;gap:14px;}
+.card h3{font-size:38px;}
+.card p{font-size:21px;color:var(--crema-dim);}
+.card .ic{font-family:var(--f-display);font-size:22px;color:var(--oro);letter-spacing:.1em;}
+
+/* AGENDA */
+.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 40px;}
+.agenda a{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(201,162,74,.22);color:var(--crema);text-decoration:none;cursor:pointer;}
+.agenda a:hover .t,.agenda a:focus-visible .t{color:var(--oro-chiaro);}
+.agenda .n{font-family:var(--f-display);font-size:44px;color:var(--oro);}
+.agenda .t{font-family:var(--f-display);font-size:34px;transition:color .3s;}
+.agenda .s{grid-column:2;font-size:17px;color:var(--crema-dim);}
+
+/* QUIZ */
+.quiz{position:absolute;inset:0;padding:58px 80px;display:flex;flex-direction:column;gap:26px;}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:22px;flex:1;min-height:0;perspective:1400px;}
+.qc{position:relative;cursor:pointer;border:0;padding:0;background:none;font:inherit;color:inherit;text-align:left;}
+.qc .in{position:absolute;inset:0;transition:transform .9s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d;}
+.qc.flip .in{transform:rotateY(180deg);}
+.qc .fr,.qc .bk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;}
+.qc .fr{background:var(--bosco2);box-shadow:0 0 0 1px rgba(201,162,74,.3);}
+.qc .fr .k{font-family:var(--f-display);font-size:40px;color:var(--oro);line-height:1;}
+.qc .fr p{font-size:20px;line-height:1.38;}
+.qc .fr small{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema-dim);}
+.qc .bk{background:linear-gradient(150deg,var(--oro-chiaro),var(--oro));color:var(--bosco);transform:rotateY(180deg);}
+.qc .bk small{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
+.qc .bk p{font-family:var(--f-display);font-size:30px;line-height:1.12;font-weight:600;}
+.qc .bk span{font-size:16px;line-height:1.35;}
+.qc:focus-visible{outline:3px solid var(--oro-chiaro);outline-offset:4px;border-radius:14px;}
+
+/* QR */
+.qr{position:absolute;inset:0;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;padding:0 120px;}
+.qrbox{background:var(--crema);padding:34px;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);}
+.qrbox svg{width:100%;height:auto;display:block;}
+.qrbox .u{margin-top:16px;text-align:center;color:var(--bosco);font-weight:700;font-size:17px;letter-spacing:.02em;}
+.try{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;}
+.try span{font-size:21px;padding:12px 20px;border-radius:40px;border:1px solid rgba(201,162,74,.5);color:var(--oro-chiaro);}
+
+/* CROMO: barra avanzamento, contatori, controlli */
+#hud{position:absolute;left:0;right:0;bottom:0;height:46px;display:flex;align-items:center;gap:18px;padding:0 28px;font-size:14px;color:var(--crema-dim);letter-spacing:.06em;z-index:5;pointer-events:none;}
+#hud .ch{text-transform:uppercase;letter-spacing:.18em;font-weight:600;font-size:12.5px;}
+#hud .sp{flex:1;}
+#prog{position:absolute;left:0;bottom:0;height:3px;background:var(--oro);width:0;transition:width .6s ease;z-index:6;}
+.ctl{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;z-index:20;opacity:.25;transition:opacity .3s;}
+.ctl:hover,.ctl:focus-within{opacity:1;}
+.ctl button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(201,162,74,.5);background:rgba(12,21,15,.8);color:var(--crema);font-size:17px;cursor:pointer;}
+.ctl button:focus-visible{outline:2px solid var(--oro-chiaro);outline-offset:2px;}
+#overview{position:fixed;inset:0;z-index:30;background:rgba(8,14,10,.96);overflow:auto;padding:40px max(16px,4vw);display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;align-content:start;}
+#overview button{background:var(--bosco2);border:1px solid rgba(201,162,74,.25);border-radius:8px;color:var(--crema);text-align:left;padding:14px;font:inherit;font-size:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;}
+#overview button b{color:var(--oro);font-size:12px;letter-spacing:.14em;}
+#overview button.cur{border-color:var(--oro);}
+#help{position:fixed;left:50%;bottom:calc(70px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(12,21,15,.92);border:1px solid rgba(201,162,74,.4);border-radius:10px;padding:12px 18px;font-size:14px;color:var(--crema-dim);z-index:25;transition:opacity 1s;max-width:calc(100% - 32px);text-align:center;}
+#help kbd{font-family:var(--f-testo);background:var(--bosco3);border-radius:4px;padding:1px 7px;color:var(--crema);}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important;}
+}
+</style>
+
+</head>
+<body>
+<div id="viewport"><div id="stage" aria-live="polite"></div></div>
+<div class="ctl" role="toolbar" aria-label="Controlli presentazione">
+  <a id="b-home" href="../index.html" aria-label="Torna alla formazione" style="width:42px;height:42px;border-radius:50%;border:1px solid rgba(201,162,74,.5);background:rgba(12,21,15,.8);color:#f4efe3;display:grid;place-items:center;text-decoration:none;font-size:18px">⌂</a>
+  <button id="b-prev" type="button" aria-label="Indietro">&#8592;</button>
+  <button id="b-next" type="button" aria-label="Avanti">&#8594;</button>
+  <button id="b-grid" type="button" aria-label="Indice delle slide">&#9638;</button>
+  <button id="b-full" type="button" aria-label="Schermo intero">&#10530;</button>
+</div>
+<div id="overview" hidden></div>
+<div id="help"><kbd>&#8594;</kbd> o <kbd>Spazio</kbd> avanti &nbsp;·&nbsp; <kbd>&#8592;</kbd> indietro &nbsp;·&nbsp; <kbd>F</kbd> schermo intero &nbsp;·&nbsp; <kbd>G</kbd> indice</div>
+
+<script>
+const QR_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges" class="segno"><path class="qrline" stroke="#1a2b1c" d="M0 0.5h7m1 0h1m3 0h2m3 0h2m3 0h7m-29 1h1m5 0h1m1 0h4m1 0h1m3 0h1m1 0h2m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h4m6 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h5m1 0h2m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h3m1 0h2m2 0h2m1 0h1m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h2m1 0h3m1 0h1m1 0h2m-20 1h1m2 0h6m2 0h2m1 0h4m1 0h1m1 0h1m2 0h1m1 0h3m-28 1h1m1 0h3m7 0h3m1 0h3m3 0h2m1 0h2m-28 1h1m2 0h1m1 0h2m2 0h1m2 0h1m1 0h2m1 0h2m1 0h4m2 0h1m-25 1h1m2 0h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m-29 1h1m1 0h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h2m1 0h1m5 0h1m-28 1h1m1 0h1m3 0h2m1 0h4m1 0h1m2 0h1m2 0h8m-28 1h2m3 0h1m1 0h2m1 0h5m3 0h1m2 0h1m3 0h1m1 0h1m-29 1h2m7 0h4m1 0h1m1 0h1m5 0h2m2 0h1m1 0h1m-27 1h2m2 0h4m1 0h1m1 0h2m4 0h2m2 0h1m1 0h1m-26 1h3m1 0h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h3m2 0h1m1 0h2m-28 1h2m3 0h5m5 0h2m1 0h2m2 0h1m2 0h1m2 0h1m-29 1h2m2 0h2m4 0h2m1 0h1m2 0h1m1 0h3m2 0h1m1 0h2m-27 1h2m2 0h1m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h9m-20 1h1m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m3 0h2m-26 1h7m1 0h2m1 0h2m1 0h3m2 0h2m1 0h1m1 0h2m-26 1h1m5 0h1m1 0h4m5 0h1m1 0h2m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h4m2 0h7m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h3m2 0h1m1 0h1m6 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h3m-29 1h1m5 0h1m3 0h1m3 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m-29 1h7m1 0h1m2 0h1m1 0h2m5 0h1m1 0h3"/></svg>';
+const CH=["","La porta d'ingresso","Orientarsi","Per le famiglie","Vita e comunità","Accessibile a tutti","Nel lavoro di ogni giorno"];
+const SLIDES=[
+{t:"title",bg:"home-hero"},
+{t:"cards",ch:0,eb:"Perché siamo qui",h:"Il sito lavora <em>con noi</em>, ogni giorno",items:[
+ ["I","È la prima porta","Famiglie e futuri convittori ci conoscono da qui, spesso molto prima di incontrarci di persona."],
+ ["II","Risponde al posto nostro","Orari, rette, moduli e regole sono raggiungibili a qualunque ora, da qualunque telefono."],
+ ["III","Ci aiuta a indirizzare","Sapere dove si trova un'informazione ci permette di rispondere a una famiglia in pochi secondi."]]},
+{t:"agenda"},
+
+{t:"chap",n:1,bg:"home-hero",sub:"La Home: cosa si vede appena si apre il sito, e perché è costruita così."},
+{t:"shot",ch:1,img:"home-hero",url:"convitto.alberghierorieti.edu.it",eb:"Home",h:"La prima <em>schermata</em>",steps:[
+ [null,"<b>Il colpo d'occhio.</b> Foto, frase d'apertura e i numeri del Convitto: chi arriva capisce subito dove si trova."],
+ [[0,0,1440,32],"<b>Barra istituzionale.</b> Link al Ministero, Amministrazione Trasparente, Area riservata e indirizzo PEC."],
+ [[88,40,218,52],"<b>Il logo.</b> Da qualunque pagina, un clic sul logo riporta alla Home."],
+ [[300,40,1060,52],"<b>Il menu principale.</b> Due scorciatoie in evidenza (Come iscriversi, Per i Genitori) e quattro sezioni a tendina."],
+ [[370,598,580,76],"<b>Tre pulsanti d'azione.</b> Tour virtuale, Info in 2 minuti e il Messaggio della nuova Dirigente."],
+ [[372,690,516,110],"<b>I numeri chiave.</b> Convittori, anno di apertura, piani residenziali, investimento PNRR sulla mensa."],
+ [[1368,730,64,158],"<b>I pulsanti fluttuanti.</b> Sempre presenti in basso a destra: torna su, Home, assistente virtuale, lettura facilitata."]]},
+{t:"shot",ch:1,img:"ds-modale",url:"convitto.alberghierorieti.edu.it",eb:"Home",h:"Il saluto della <em>Dirigente</em>",steps:[
+ [[398,18,644,864],"<b>Si apre solo al clic</b> sul pulsante “Messaggio nuovo D.S.”: nessuna finestra invade la pagina senza che l'utente lo chieda."],
+ [[398,18,644,120],"<b>Testo integrale</b> del messaggio di benvenuto dell'Avv. Maddalena Cioci, con firma in chiusura."]]},
+{t:"shot",ch:1,img:"home-percorso",url:"convitto.alberghierorieti.edu.it/#percorso",eb:"Home",h:"Chi sei, <em>oggi?</em>",steps:[
+ [[190,228,1060,312],"<b>Tre porte, tre persone.</b> Futuro convittore, genitore, ex alunno: ognuno trova subito il proprio percorso."],
+ [[195,552,1050,100],"<b>Accesso rapido.</b> Contatti urgenti, menu, rette, regolamento, bullismo, segnalazione di un problema."]]},
+{t:"shot",ch:1,img:"home-oggi",url:"convitto.alberghierorieti.edu.it/#news",eb:"Home",h:"Ultime <em>notizie</em>",steps:[
+ [[198,215,1044,176],"<b>La notizia fissata in alto.</b> Aggiornamenti di lunga durata, come il cantiere della nuova palestra."],
+ [[198,455,1044,445],"<b>Le notizie più recenti</b> con foto, data e categoria. L'elenco completo è in Novità › Ultime notizie."]]},
+{t:"mosaic",ch:1,eb:"Home",h:"Scorrendo <em>verso il basso</em>",n:4,tiles:[
+ ["home-esperienze","Due esperienze","Open Day, tour virtuale e la rete degli ex convittori nel mondo."],
+ ["home-galleria","La vita al Costaggini","Galleria fotografica a scorrimento, con ingrandimento."],
+ ["home-faq","Domande frequenti","Le risposte più richieste, tratte dal Regolamento."],
+ ["home-footer","Piè di pagina","Tutti i link, recapiti, privacy, cookie e accessibilità."]]},
+
+{t:"chap",n:2,bg:"menu-dropdown",sub:"Menu, ricerca, assistente virtuale e mappa: quattro modi per trovare qualunque cosa."},
+{t:"shot",ch:2,img:"menu-dropdown",url:"convitto.alberghierorieti.edu.it",eb:"Menu",h:"Il menu <em>a tendina</em>",steps:[
+ [[300,40,1060,52],"<b>Quattro sezioni:</b> Il Convitto, Servizi, Novità, Regolamenti &amp; Documenti. Basta passarci sopra con il mouse."],
+ [[660,72,224,378],"<b>Il Convitto</b> raccoglie storia, educatori, giornata tipo, Premio al Merito, trofei, Laboratorio Musicale e Comunità."]]},
+{t:"shot",ch:2,img:"menu-dropdown2",url:"convitto.alberghierorieti.edu.it",eb:"Menu",h:"Regolamenti &amp; <em>Documenti</em>",steps:[
+ [[968,72,244,242],"<b>Documenti ufficiali in un unico punto:</b> Accoglienza e Modulistica, Regolamento, PTOF spiegato, Trasparenza, Organizzazione, Mappa del sito."]]},
+{t:"shot",ch:2,img:"ricerca",url:"convitto.alberghierorieti.edu.it",eb:"Ricerca",h:"Cerca <em>come parli</em>",steps:[
+ [null,"<b>La lente</b> accanto al logo apre la ricerca. Da tastiera: Ctrl + K."],
+ [[478,80,472,56],"<b>Si scrive una domanda</b> in italiano corrente: “quanto costa la retta”, “orari dei pasti”, “cosa devo portare”."],
+ [[436,140,568,462],"<b>Risultati ordinati</b> per pertinenza, con la sezione di appartenenza. Un clic porta alla pagina giusta."]]},
+{t:"shot",ch:2,img:"chatbot",url:"convitto.alberghierorieti.edu.it",eb:"Assistente",h:"L'assistente <em>virtuale</em>",steps:[
+ [[1374,782,52,54],"<b>Il tocco sul cappello</b> apre l'assistente del Convitto."],
+ [[1042,296,378,528],"<b>Risponde per parole chiave</b> e suggerisce domande pronte. Se non conosce la risposta, indica la pagina più adatta."],
+ [[1042,296,378,110],"<b>Funziona in locale:</b> nessun dato viene inviato a servizi esterni. Per un contatto diretto rimanda al modulo."]]},
+{t:"shot",ch:2,img:"mappa-sito",url:"convitto.alberghierorieti.edu.it/mappa-sito.html",eb:"Mappa",h:"La mappa <em>del sito</em>",steps:[
+ [[72,182,436,92],"<b>Un filtro immediato:</b> si scrive una parola e la mappa mostra solo le pagine corrispondenti."],
+ [[72,292,1366,608],"<b>Tutte le pagine</b> raggruppate per tema. È il punto di partenza più sicuro quando non si sa da dove cominciare."]]},
+{t:"qr",ch:2},
+
+{t:"chap",n:3,bg:"genitori",sub:"Le pagine che le famiglie aprono di più: iscrizione, accoglienza, modulistica."},
+{t:"shot",ch:3,img:"genitori",url:"convitto.alberghierorieti.edu.it/genitori.html",eb:"Per i Genitori",h:"Una pagina <em>per chi ci affida un figlio</em>",steps:[
+ [null,"<b>La pagina più consultata dalle famiglie.</b> Linguaggio semplice, domande vere, nessun gergo."],
+ [[0,510,1440,76],"<b>La barra dei capitoli:</b> accesso rapido, impegno, checklist, FAQ, area famiglie. Un clic porta alla sezione."]]},
+{t:"shot",ch:3,img:"genitori2",url:"convitto.alberghierorieti.edu.it/genitori.html#impegno",eb:"Per i Genitori",h:"Cosa garantiamo <em>ogni giorno</em>",steps:[
+ [[0,0,1440,256],"<b>Cosa ti serve, subito:</b> contatti urgenti, menu, rette, uscite, regolamento, bullismo."],
+ [[80,260,1280,640],"<b>Il nostro impegno</b> in quattro punti: sicurezza H24, comunicazione con le famiglie, alimentazione e salute, studio assistito."]]},
+{t:"shot",ch:3,img:"ammissione",url:"convitto.alberghierorieti.edu.it/ammissione.html",eb:"Come iscriversi",h:"Entrare <em>in Convitto</em>",steps:[
+ [[300,186,840,204],"<b>Come e quando.</b> Periodo di preiscrizione e rimando al portale ministeriale."],
+ [[0,500,1440,400],"<b>Tre passi</b> spiegati in sequenza: il percorso completo, dalla domanda all'ingresso."]]},
+{t:"shot",ch:3,img:"domanda",url:"convitto.alberghierorieti.edu.it/domanda-ammissione.html",eb:"Domanda di ammissione",h:"La domanda <em>online</em>",steps:[
+ [[328,176,784,384],"<b>Dati del genitore o tutore</b>, con campi obbligatori segnalati."],
+ [[328,586,784,314],"<b>Dati dell'alunno</b> e documenti allegabili. Ogni domanda arriva al Convitto e viene archiviata in un foglio dedicato."]]},
+{t:"shot",ch:3,img:"accoglienza",url:"convitto.alberghierorieti.edu.it/accoglienza.html",eb:"Accoglienza",h:"Accoglienza &amp; <em>Modulistica</em>",steps:[
+ [[262,108,916,206],"<b>L'avviso dell'accoglienza</b> con giorno, orari e referente."],
+ [[262,392,916,490],"<b>Le schede da preparare:</b> la Scheda informativa si compila online, la Scheda sanitaria si stampa e si firma."]]},
+{t:"shot",ch:3,img:"semiconvitto",url:"convitto.alberghierorieti.edu.it/semiconvitto.html",eb:"Semiconvitto",h:"Il <em>Semiconvitto</em>",steps:[
+ [[338,208,750,672],"<b>Avviso n. 58 del 25/09/2026:</b> servizio attivo dal 12 ottobre, mensa e studio assistito fino alle 17:30."],
+ [[338,772,750,108],"<b>Costi e ticket PagoPA</b>, con il modulo compilabile a schermo e stampabile."]]},
+{t:"shot",ch:3,img:"in2min",url:"convitto.alberghierorieti.edu.it/in-2-minuti.html",eb:"In 2 minuti",h:"Il Convitto <em>in 2 minuti</em>",steps:[
+ [[266,246,908,120],"<b>Quattro cifre</b> per capire il servizio: educatori presenti H24, pasti, anni di storia, indirizzi."],
+ [[296,416,860,484],"<b>Le domande essenziali</b> a fisarmonica: chi può iscriversi, quanto costa, come è organizzata la giornata."]]},
+{t:"shot",ch:3,img:"area-riservata",url:"convitto.alberghierorieti.edu.it/area-riservata.html",eb:"Area riservata",h:"L'area <em>famiglie</em>",steps:[
+ [[466,256,508,396],"<b>Accesso sospeso in via cautelativa</b>, in attesa della verifica sulle procedure di accesso. Alle famiglie che chiedono, indichiamo questa situazione."]]},
+
+{t:"chap",n:4,bg:"tour2",sub:"Il Convitto raccontato dall'interno: ambienti, persone, ricordi, talenti."},
+{t:"shot",ch:4,img:"tour2",url:"convitto.alberghierorieti.edu.it/tour-virtuale.html",eb:"Tour virtuale",h:"Il Convitto <em>a 360°</em>",steps:[
+ [[0,0,1440,500],"<b>Si trascina con il mouse o con il dito</b> per guardarsi intorno, come se si fosse dentro."],
+ [[44,314,124,184],"<b>Comandi di rotazione e zoom</b>, utili anche da tastiera."],
+ [[258,500,1146,400],"<b>Scheda dell'ambiente</b> con una breve descrizione e la lettura a voce."]]},
+{t:"mosaic",ch:4,eb:"Chi siamo",h:"Persone e <em>luoghi</em>",n:6,tiles:[
+ ["educatori","Gli Educatori","Il gruppo educativo e il suo modo di lavorare."],
+ ["giornata","Una giornata tipo","Dalla sveglia al riposo, ora per ora."],
+ ["servizi","Servizi &amp; spazi","Ristorazione, alloggi, studio, sport, salute."],
+ ["comunita","La nostra Comunità","Momenti da non dimenticare, alumni, musica."],
+ ["ricordi","Il Muro dei Ricordi","Gli ex convittori lasciano un pensiero."],
+ ["voci","Voci dal Convitto","Dieci domande, tante risposte dei ragazzi."]]},
+{t:"mosaic",ch:4,eb:"Talenti",h:"Riconoscimenti e <em>appuntamenti</em>",n:6,tiles:[
+ ["premio","Premio al Merito","Il riconoscimento “Educatore Mario Serva”."],
+ ["lab","Laboratorio Musicale","La musica che abita il Convitto."],
+ ["giochi","Giochi &amp; Orientamento","Quiz, simulatore, gioco dei piatti."],
+ ["openday","Open Day","Conto alla rovescia e prenotazione delle visite."],
+ ["calendario","Calendario eventi","Filtri per tipo ed esportazione nel proprio calendario."],
+ ["notizie","Ultime notizie","Tutte le notizie, filtrabili per categoria."]]},
+
+{t:"chap",n:5,bg:"lettura-on",sub:"Lettura facilitata, traduzione, smartphone: il sito si adatta a chi lo usa."},
+{t:"compare",ch:5},
+{t:"phones",ch:5,eb:"Da smartphone",h:"Il sito <em>in tasca</em>",items:[
+ ["m-home","La Home",0],["m-menu","Il menu a tutto schermo",0],["m-jumpnav","Il nastro delle sezioni",1],["m-chatbot","L'assistente",0]]},
+{t:"cards",ch:5,eb:"Accessibilità",h:"Pensato <em>per tutti</em>",items:[
+ ["Aa","Lettura facilitata","Testo più grande e spaziato, link sottolineati. La scelta resta memorizzata sul dispositivo."],
+ ["IT · EN · ES · AR · RO","Cinque lingue","Il pulsante “IT” traduce l'intero sito per le famiglie di altra lingua."],
+ ["⌨","Tastiera e contrasti","Navigabile senza mouse, colori verificati, animazioni ridotte per chi le disattiva."]]},
+
+{t:"chap",n:6,bg:"contatti",sub:"Quando una famiglia chiede, sappiamo già dove mandarla."},
+{t:"quiz",ch:6,from:0,to:8,round:"Primo round"},
+{t:"quiz",ch:6,from:8,to:16,round:"Secondo round"},
+{t:"quiz",ch:6,from:16,to:24,round:"Terzo round"},
+{t:"shot",ch:6,img:"trasparenza",url:"convitto.alberghierorieti.edu.it/trasparenza.html",eb:"Trasparenza",h:"Amministrazione <em>Trasparente</em>",steps:[
+ [[58,62,1326,104],"<b>Cosa riguarda il Convitto</b> e cosa invece è pubblicato sul sito dell'Istituto (bilancio, anticorruzione)."],
+ [[58,166,1326,390],"<b>I documenti fondamentali:</b> Regolamento, PTOF, organigramma, elenco del personale."]]},
+{t:"shot",ch:6,img:"contatti",url:"convitto.alberghierorieti.edu.it/contatti.html",eb:"Contatti",h:"Contattaci",steps:[
+ [[66,296,566,604],"<b>Tutti i recapiti:</b> indirizzo, telefoni di Convitto e Istituto, email."],
+ [[686,276,712,624],"<b>Il modulo di contatto:</b> il messaggio arriva direttamente nella casella del Convitto."]]},
+{t:"end",bg:"home-galleria"}
+];
+
+(function(){
+const stage=document.getElementById('stage');
+const IMG=n=>'img/'+n+'.webp';
+const esc=s=>s; // contenuti statici scritti a mano
+let idx=0, step=0; const els=[];
+const QUIZ=[
+ ["Una mamma chiede cosa mettere in valigia per il primo giorno.","Per i Genitori","Sezione Checklist, oltre ad Accoglienza &amp; Modulistica."],
+ ["Un papà vuole sapere quanto costa il Convitto.","Come iscriversi","Oppure “In 2 minuti”, domanda “Quanto costa stare in Convitto?”."],
+ ["Una famiglia vuole vedere le camere prima di iscriversi.","Tour virtuale","E per la visita dal vivo: Orientamento &amp; Open Day."],
+ ["Un ragazzo racconta di prese in giro in una chat di gruppo.","Bullismo e Cyberbullismo","Menu Servizi: cosa fare, a chi rivolgersi, contatti."],
+ ["Un ex convittore vuole lasciare un pensiero.","Il Muro dei Ricordi","Dalla pagina La nostra Comunità."],
+ ["A che ora è la cena?","Servizi &amp; spazi","Sezione Ristorazione: cena dalle 19:00 alle 20:00."],
+ ["Serve la scheda sanitaria da consegnare all'accoglienza.","Accoglienza &amp; Modulistica","Da stampare, far firmare al medico e consegnare."],
+ ["Un genitore chiede il Regolamento “in parole semplici”.","Il Regolamento spiegato","Menu Regolamenti &amp; Documenti."],
+ ["Una famiglia vuole che il figlio rientri la domenica sera invece del lunedì.","Richiesta di Rientro Domenicale","Da Accoglienza &amp; Modulistica: si compila, si stampa, si consegna agli Educatori."],
+ ["Servono i moduli per la libera uscita e le altre autorizzazioni.","Autorizzazioni","Da Accoglienza &amp; Modulistica: dati inseriti una volta, riportati in tutti i moduli."],
+ ["Un ragazzo di terza media non sa se il Convitto fa per lui.","Il Convitto fa per me?","12 domande in 3 minuti, da Orientamento &amp; Open Day."],
+ ["Un genitore arriva da Roma con i mezzi pubblici.","Come arrivare","Linea Cotral sulla Salaria, capolinea sulla via del Convitto."],
+ ["Una famiglia vuole prenotare una visita al Convitto.","Orientamento &amp; Open Day","Pagina Open Day: conto alla rovescia e modulo “Richiesta Visita”."],
+ ["Un genitore chiede cosa si mangia questa settimana.","Menu della Settimana","Menu Novità, aggiornato settimana per settimana."],
+ ["Un genitore che non alloggia il figlio chiede di mensa e studio pomeridiano.","Semiconvitto","Menu Servizi: attivo dal 12 ottobre, adesione entro il 5 ottobre."],
+ ["Un collega vuole segnare in agenda la prossima festa del Convitto.","Calendario eventi","Menu Novità: ogni evento si esporta nel proprio calendario (.ics)."],
+ ["Un genitore chiede a che ora si svegliano i ragazzi.","Una giornata tipo","Menu Il Convitto: sveglia alle 6:30, poi la giornata ora per ora."],
+ ["Serve il numero di telefono del Convitto.","Contattaci","0746 296862, con telefono dell'Istituto, email e PEC."],
+ ["Un avvocato deve mandare una comunicazione ufficiale con valore legale.","PEC","Nella barra in alto di ogni pagina, e in Contattaci: rirh010007@pec.istruzione.it."],
+ ["La famiglia deve firmare gli impegni reciproci con il Convitto.","Patto di Corresponsabilità","Da Accoglienza &amp; Modulistica: si legge, si firma, si consegna agli Educatori."],
+ ["Un genitore vuole inserire online i dati del figlio prima dell'accoglienza.","Scheda Informativa del Convittore","I dati arrivano alla segreteria; poi si stampa, si firma e si consegna."],
+ ["Una famiglia chiede cosa promette la scuola nel PTOF.","Il PTOF spiegato","Menu Regolamenti &amp; Documenti: 6 sezioni, circa 8 minuti di lettura."],
+ ["Un ex convittore vuole comparire nella galleria degli alumni.","Alumni › Unisciti","Da La nostra Comunità: la scheda si vede in anteprima mentre si scrive."],
+ ["Un genitore vuole sapere chi sono gli educatori e che ruolo hanno.","Gli Educatori","Menu Il Convitto: il profilo previsto dal contratto e i volti del gruppo."]];
+
+const qset=s=>QUIZ.slice(s.from||0,s.to||QUIZ.length);
+function nsteps(s){ if(s.t==='shot') return s.steps.length; if(s.t==='quiz') return qset(s).length+1; return 1; }
+
+function build(s,i){
+  const d=document.createElement('section'); d.className='slide'; d.setAttribute('aria-roledescription','slide');
+  let h='';
+  if(s.t==='title'){
+    const words="Il sito del Convitto".split(' ');
+    h=`<div class="bgimg kb" style="background-image:url(${IMG(s.bg)})"></div><div class="veil"></div>
+    <div class="title-wrap"><div class="eyebrow rise">Formazione del personale · A.S. 2026/2027</div>
+    <h1>${words.map((w,k)=>`<span style="transition-delay:${.2+k*.14}s">${w}</span>`).join(' ')}</h1>
+    <div class="goldline"></div>
+    <p class="lead rise d4">Sezioni, funzioni e percorsi del sito istituzionale del Convitto “R. A. Costaggini”.</p>
+    <p class="byline rise d5"><b>Educatore Michele Gaggiano</b></p>
+    <p class="url rise d6">convitto.alberghierorieti.edu.it</p></div>`;
+  } else if(s.t==='chap'){
+    h=`<div class="bgimg kb dim" style="background-image:url(${IMG(s.bg)})"></div>
+    <div class="chap"><div class="num">${['','I','II','III','IV','V','VI'][s.n]}</div>
+    <div class="txt"><div class="eyebrow rise">Capitolo ${s.n}</div><h2 class="rise d1">${CH[s.n]}</h2><p class="lead rise d2">${s.sub}</p></div></div>`;
+  } else if(s.t==='shot'){
+    h=`<div class="shot"><div class="browser rise"><div class="bar"><i></i><i></i><i></i><div class="addr">🔒 ${s.url}</div></div>
+    <div class="vp"><div class="cam"><img src="${IMG(s.img)}" alt="Schermata: ${s.eb}" loading="lazy"></div><div class="spot off"></div></div></div>
+    <div class="side"><div class="eyebrow rise d1">${s.eb}</div><h2 class="rise d2">${s.h}</h2>
+    <ol class="steps">${s.steps.map(x=>`<li>${x[1]}</li>`).join('')}</ol></div></div>`;
+  } else if(s.t==='mosaic'){
+    h=`<div class="mosaic"><div class="eyebrow rise">${s.eb}</div><h2 class="rise d1">${s.h}</h2>
+    <div class="tiles c${s.n}">${s.tiles.map((t,k)=>`<figure class="tile" style="transition-delay:${.35+k*.13}s;margin:0"><img src="${IMG(t[0])}" alt="" loading="lazy"><figcaption><b>${t[1]}</b>${t[2]}</figcaption></figure>`).join('')}</div></div>`;
+  } else if(s.t==='cards'){
+    h=`<div class="cards"><div class="eyebrow rise">${s.eb}</div><h2 class="rise d1" style="font-size:78px">${s.h}</h2>
+    <div class="cgrid">${s.items.map((c,k)=>`<div class="card rise d${k+2}"><div class="ic">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('')}</div></div>`;
+  } else if(s.t==='agenda'){
+    const subs=["Home, notizie, prima impressione","Menu, ricerca, assistente, mappa","Iscrizione, accoglienza, moduli","Tour virtuale, persone, talenti","Lettura facilitata, lingue, smartphone","Dove indirizzare le famiglie"];
+    h=`<div class="cards"><div class="eyebrow rise">Il percorso di oggi</div><h2 class="rise d1" style="font-size:78px">Sei <em>capitoli</em></h2>
+    <nav class="agenda">${[1,2,3,4,5,6].map(n=>`<a class="rise d${n}" data-go="${n}" tabindex="0"><span class="n">${['','I','II','III','IV','V','VI'][n]}</span><span class="t">${CH[n]}</span><span class="s">${subs[n-1]}</span></a>`).join('')}</nav></div>`;
+  } else if(s.t==='qr'){
+    h=`<div class="qr"><div style="display:flex;flex-direction:column;gap:26px"><div class="eyebrow rise">Proviamo insieme</div>
+    <h2 class="rise d1" style="font-size:80px">Prendete il <em>telefono</em></h2>
+    <p class="lead rise d2">Inquadrate il codice, aprite la lente in alto e provate a cercare:</p>
+    <div class="try rise d3"><span>orari dei pasti</span><span>cosa devo portare</span><span>quanto costa</span><span>bullismo</span><span>uscite autonome</span></div>
+    <p class="lead rise d4" style="font-size:21px">Poi fate la stessa domanda all'assistente virtuale e confrontate le risposte.</p></div>
+    <div class="qrbox rise d2">${QR_SVG}<div class="u">convitto.alberghierorieti.edu.it</div></div></div>`;
+  } else if(s.t==='compare'){
+    h=`<div class="compare"><div class="cmp rise" id="cmp"><img src="${IMG('lettura-off')}" alt="Pagina con lettura normale"><img class="after" src="${IMG('lettura-on')}" alt="Pagina con lettura facilitata"><div class="handle"></div><span class="lab l">Normale</span><span class="lab r">Lettura facilitata</span></div>
+    <div class="side"><div class="eyebrow rise d1">Lettura facilitata</div><h2 class="rise d2">Un tocco su <em>Aa</em></h2>
+    <p class="lead rise d3" style="font-size:22px">Caratteri più grandi, righe più distanziate, link sottolineati e focus ben visibile. Trascinate il cursore sull'immagine per confrontare.</p>
+    <p class="lead rise d4" style="font-size:18px">Utile per chi ha difficoltà di lettura, per i nonni, per chi legge da un telefono piccolo.</p></div></div>`;
+  } else if(s.t==='phones'){
+    h=`<div class="phones"><div class="eyebrow rise">${s.eb}</div><h2 class="rise d1">${s.h}</h2>
+    <div class="prow">${s.items.map((p,k)=>`<div style="display:flex;flex-direction:column"><div class="phone ${p[2]?'scroll':''}" style="transition-delay:${.3+k*.16}s"><div class="scr"><img src="${IMG(p[0])}" alt="Schermata da smartphone: ${p[1]}" loading="lazy"></div></div><div class="cap rise d4">${p[1]}</div></div>`).join('')}</div></div>`;
+  } else if(s.t==='quiz'){
+    const base=s.from||0;
+    h=`<div class="quiz"><div class="eyebrow rise">Gioco · ${s.round||''}</div><h2 class="rise d1">Dove lo <em>trovo?</em></h2>
+    <div class="qgrid">${qset(s).map((q,k0)=>{const k=base+k0; return `<button type="button" class="qc rise" style="transition-delay:${.25+k0*.07}s" aria-label="Domanda ${k+1}: ${q[0].replace(/"/g,'')}"><span class="in"><span class="fr"><span class="k">${k+1}</span><p>${q[0]}</p><small>Tocca per la risposta</small></span><span class="bk"><small>Risposta</small><p>${q[1]}</p><span>${q[2]}</span></span></span></button>`;}).join('')}</div></div>`;
+  } else if(s.t==='end'){
+    h=`<div class="bgimg kb" style="background-image:url(${IMG(s.bg)})"></div><div class="veil"></div>
+    <div class="qr" style="position:absolute"><div style="display:flex;flex-direction:column;gap:28px"><div class="eyebrow rise">Grazie</div>
+    <h1 class="rise d1" style="font-size:96px">Il sito è <em>di tutti noi</em></h1>
+    <p class="lead rise d2">Un'informazione da correggere, una notizia da pubblicare, un'idea per migliorare una pagina: segnalatela.</p>
+    <p class="byline rise d3"><b>Educatore Michele Gaggiano</b></p></div>
+    <div class="qrbox rise d3" style="width:340px;justify-self:end">${QR_SVG}<div class="u">convitto.alberghierorieti.edu.it</div></div></div>`;
+  }
+  d.innerHTML=h; stage.appendChild(d); return d;
+}
+
+SLIDES.forEach((s,i)=>els.push(build(s,i)));
+const hud=document.createElement('div'); hud.id='hud'; hud.innerHTML='<span class="ch"></span><span class="sp"></span><span class="no"></span>'; stage.appendChild(hud);
+const prog=document.createElement('div'); prog.id='prog'; stage.appendChild(prog);
+
+/* camera sugli screenshot */
+function frame(d,s,k){
+  const vp=d.querySelector('.vp'), cam=d.querySelector('.cam'), spot=d.querySelector('.spot');
+  const W=1010,H=631, s0=W/1440, r=s.steps[k][0];
+  if(!r){ cam.style.transform=`scale(${s0})`; spot.className='spot off'; spot.style.cssText=`left:${W/2}px;top:${H/2}px;width:0;height:0`; return; }
+  let z=Math.min(W*.82/(r[2]*s0), H*.78/(r[3]*s0), 2.4); z=Math.max(z,1);
+  const sc=s0*z;
+  let tx=W/2-(r[0]+r[2]/2)*sc, ty=H/2-(r[1]+r[3]/2)*sc;
+  tx=Math.min(0,Math.max(W-1440*sc,tx)); ty=Math.min(0,Math.max(H-900*sc,ty));
+  cam.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;
+  const p=8;
+  spot.style.cssText=`left:${r[0]*sc+tx-p}px;top:${r[1]*sc+ty-p}px;width:${r[2]*sc+2*p}px;height:${r[3]*sc+2*p}px`;
+  spot.className='spot'; void spot.offsetWidth; spot.className='spot pulse';
+}
+
+function render(){
+  const s=SLIDES[idx];
+  els.forEach((e,i)=>{e.classList.toggle('on',i===idx); e.classList.toggle('out',i<idx); e.setAttribute('aria-hidden',i===idx?'false':'true');});
+  const d=els[idx];
+  if(s.t==='shot'){
+    frame(d,s,step);
+    d.querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<step?'seen':(i===step?'cur':'');});
+  }
+  if(s.t==='quiz'){
+    d.querySelectorAll('.qc').forEach((c,i)=>c.classList.toggle('flip',i<step));
+  }
+  const ch=s.ch!=null?s.ch:(s.n||0);
+  hud.querySelector('.ch').textContent=ch?`${['','I','II','III','IV','V','VI'][ch]} · ${CH[ch]}`:'';
+  hud.querySelector('.no').textContent=`${idx+1} / ${SLIDES.length}`;
+  hud.style.opacity=(s.t==='title'||s.t==='end')?0:1;
+  prog.style.width=((idx+ (step/Math.max(1,nsteps(s))) /1)/(SLIDES.length-1)*100)+'%';
+  try{ history.replaceState(null,'','#s'+(idx+1)); }catch(e){}
+}
+function next(){ const s=SLIDES[idx]; if(step<nsteps(s)-1){step++;render();} else if(idx<SLIDES.length-1){idx++;step=0;render();} }
+function prev(){ if(step>0){step--;render();} else if(idx>0){idx--;step=nsteps(SLIDES[idx])-1; if(SLIDES[idx].t==='quiz') step=0; render();} }
+function go(i){ idx=Math.max(0,Math.min(SLIDES.length-1,i)); step=0; render(); }
+
+/* agenda cliccabile */
+stage.addEventListener('click',e=>{
+  const a=e.target.closest('[data-go]');
+  if(a){ const n=+a.dataset.go; go(SLIDES.findIndex(s=>s.t==='chap'&&s.n===n)); return; }
+  const q=e.target.closest('.qc');
+  if(q){ q.classList.toggle('flip'); return; }
+  if(e.target.closest('#cmp')) return;
+  if(e.target.closest('.shot .browser')) next();
+});
+stage.addEventListener('keydown',e=>{ const a=e.target.closest('[data-go]'); if(a&&(e.key==='Enter')){a.click();} });
+
+/* confronto trascinabile */
+const cmp=document.getElementById('cmp');
+if(cmp){ const aft=cmp.querySelector('.after'), hd=cmp.querySelector('.handle');
+  const setp=x=>{const r=cmp.getBoundingClientRect(); const p=Math.max(0,Math.min(1,(x-r.left)/r.width)); aft.style.clipPath=`inset(0 0 0 ${p*100}%)`; hd.style.left=(p*100)+'%';};
+  let drag=false; cmp.addEventListener('pointerdown',e=>{drag=true;cmp.setPointerCapture(e.pointerId);setp(e.clientX);});
+  cmp.addEventListener('pointermove',e=>{if(drag)setp(e.clientX);}); cmp.addEventListener('pointerup',()=>drag=false);
+}
+
+/* tastiera, clic, swipe */
+document.addEventListener('keydown',e=>{
+  if(!ov.hidden){ if(e.key==='Escape'||e.key==='g'||e.key==='G'){ov.hidden=true;} return; }
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){ if(e.key==='Enter'&&e.target.closest('button,a'))return; e.preventDefault(); next(); }
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){ e.preventDefault(); prev(); }
+  else if(e.key==='Home') go(0); else if(e.key==='End') go(SLIDES.length-1);
+  else if(e.key==='f'||e.key==='F') full();
+  else if(e.key==='g'||e.key==='G') showOv();
+});
+let tx0=null; document.addEventListener('touchstart',e=>{ if(e.target.closest('#cmp'))return; tx0=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{ if(tx0==null)return; const dx=e.changedTouches[0].clientX-tx0; if(Math.abs(dx)>50){dx<0?next():prev();} tx0=null;});
+document.getElementById('b-next').onclick=next; document.getElementById('b-prev').onclick=prev;
+document.getElementById('b-full').onclick=full; document.getElementById('b-grid').onclick=showOv;
+function full(){ try{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); }catch(e){} }
+
+/* indice */
+const ov=document.getElementById('overview');
+function showOv(){
+  ov.innerHTML=SLIDES.map((s,i)=>{const t=(s.h||(s.t==='chap'?CH[s.n]:s.t==='title'?'Il sito del Convitto':s.t==='qr'?'Proviamo insieme':s.t==='quiz'?'Dove lo trovo?':s.t==='compare'?'Lettura facilitata':s.t==='agenda'?'Sei capitoli':'Grazie')).replace(/<[^>]+>/g,'');
+    return `<button type="button" data-i="${i}" class="${i===idx?'cur':''}"><b>${i+1}${s.t==='chap'?' · CAPITOLO '+s.n:''}</b>${t}</button>`;}).join('');
+  ov.hidden=false;
+}
+ov.addEventListener('click',e=>{const b=e.target.closest('[data-i]'); if(b){ov.hidden=true; go(+b.dataset.i);} else ov.hidden=true;});
+
+/* scala del palcoscenico */
+function fit(){ const s=Math.min(window.innerWidth/1600, window.innerHeight/900); stage.style.transform=`scale(${s})`; }
+window.addEventListener('resize',fit); fit();
+
+const m=(location.hash||'').match(/^#s(\d+)$/); if(m) idx=Math.min(SLIDES.length-1,Math.max(0,+m[1]-1));
+render();
+setTimeout(()=>{const h=document.getElementById('help'); if(h){h.style.opacity=0; setTimeout(()=>h.hidden=true,1100);}},6000);
+})();
+
+</script>
+
+</body>
+</html>

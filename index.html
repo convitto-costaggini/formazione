@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formazione Convitto</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+<a class="logo" href="index.html">Formazione <em>Convitto</em></a>
+<nav class="menu" aria-label="Menu principale"><a href="presentazione/" class=""><span class="n">1</span>Presentazione del sito</a><a href="guida.html" class=""><span class="n">2</span>Guida al gestionale</a><a href="link.html" class=""><span class="n">3</span>Link rapidi</a></nav>
+</div></header>
+<main>
+
+<div class="eyebrow">Formazione del personale educativo</div>
+<h1>Il sito e il gestionale del Convitto</h1>
+<p class="lead">Tutto il materiale della formazione in un solo posto. Segui le tre sezioni nell'ordine: prima la presentazione, poi la guida pratica, e tieni a portata di mano i link rapidi.</p>
+
+<div class="tiles">
+  <a class="tile" href="presentazione/"><span class="big">1</span><h3>Presentazione del sito</h3><p>Le sezioni e le funzioni del sito del Convitto, spiegate con le schermate reali.</p><span class="vai">Apri la presentazione →</span></a>
+  <a class="tile" href="guida.html"><span class="big">2</span><h3>Guida al gestionale</h3><p>Passo passo: come entrare nel gestionale di prova e completare le missioni.</p><span class="vai">Apri la guida →</span></a>
+  <a class="tile" href="link.html"><span class="big">3</span><h3>Link rapidi</h3><p>Il gioco, il gestionale di prova e questo sito, con pulsanti e codici QR.</p><span class="vai">Apri i link →</span></a>
+</div>
+
+<div class="box ok">
+  <h3>Puoi provare tutto senza timore</h3>
+  <p style="margin:0">Il gestionale che userai in aula è una <b>copia di prova</b>: contiene solo convittori inventati, non invia email e non tocca in alcun modo il registro vero. Qualunque cosa tu faccia, alla fine viene cancellata.</p>
+</div>
+
+<div class="box avviso">
+  <h3>Una regola sola da ricordare</h3>
+  <p style="margin:0">Sul telefono apri questo sito in una <b>scheda in incognito</b> di Chrome (su iPhone: <b>navigazione privata</b> di Safari). Così il gestionale di prova si apre senza errori. La guida ti spiega come, al <a href="guida.html#passo1">passo 1</a>.</p>
+</div>
+
+</main>
+<footer>Convitto "R. A. Costaggini" · Formazione del personale educativo · A.S. 2026/2027<br>
+<a href="index.html">Home</a> · <a href="formatore.html">Area del formatore</a></footer>
+<div class="toast" id="toast">Copiato</div>
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-copia]'); if(!b) return;
+  var t=b.getAttribute('data-copia');
+  function ok(){var x=document.getElementById('toast');x.classList.add('on');setTimeout(function(){x.classList.remove('on')},1500);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){prompt('Copia questo indirizzo:',t)});}
+  else prompt('Copia questo indirizzo:',t);
+});
+</script>
+</body>
+</html>
