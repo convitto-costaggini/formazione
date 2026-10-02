@@ -47,6 +47,10 @@ em{font-style:italic;color:var(--oro-chiaro)}
 .task h2{font-size:92px;max-width:1050px}
 .task .q{font-size:38px;line-height:1.3;max-width:1100px;margin:0;color:var(--crema)}
 .task .q b{color:var(--oro-chiaro);font-weight:700}
+.task .row{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.task .apri{display:inline-flex;gap:12px;align-items:center;font-size:22px;font-weight:700;color:var(--oro-chiaro);border:2px solid var(--oro);padding:10px 22px;border-radius:40px;text-decoration:none}
+.task .apri:hover,.task .apri:focus-visible{background:rgba(201,162,74,.18);outline:none}
+.side .apri{align-self:flex-start;font-size:16px;font-weight:700;color:var(--oro-chiaro);text-decoration:none;border-bottom:1px solid var(--oro)}
 .task .think{display:inline-flex;align-self:flex-start;gap:14px;align-items:center;font-size:22px;color:var(--bosco);background:var(--oro-chiaro);padding:12px 22px;border-radius:40px;font-weight:700}
 /* passo passo */
 .walk{position:absolute;inset:0;padding:46px 40px 70px 46px;display:grid;grid-template-columns:1112px 1fr;gap:34px}
@@ -124,6 +128,8 @@ var stage=document.getElementById('stage');
 var IMG=function(n){return 'img/'+n+'.webp';};
 var SC=1110/1280;
 var TOT=GUIDE.length;
+var PROVA='https://convitto-costaggini.github.io/formazione/prova';
+function APRI(c){return '<a class="'+c+'" href="'+PROVA+'" target="_blank" rel="noopener">Apri il gestionale di prova ↗</a>';}
 var S=[{t:'cover'},{t:'how'}];
 GUIDE.forEach(function(g){S.push({t:'task',g:g});S.push({t:'walk',g:g});});
 S.push({t:'end'});
@@ -144,7 +150,7 @@ function build(s){
       '<p class="note rise d4">Le schermate vengono dal gestionale di prova: i nomi dei ragazzi sono inventati.</p></div>';
   } else if(s.t==='task'){
     h='<div class="task"><div class="num rise">'+s.g.id+'</div><div class="eyebrow rise">Operazione guidata '+s.g.id+' di '+TOT+'</div>'+
-      '<h2 class="rise d1">'+s.g.t+'</h2><p class="q rise d2">'+s.g.task+'</p><div class="think rise d3">Dove clicchereste?</div></div>';
+      '<h2 class="rise d1">'+s.g.t+'</h2><p class="q rise d2">'+s.g.task+'</p><div class="row rise d3"><div class="think">Dove clicchereste?</div>'+APRI('apri')+'</div></div>';
   } else if(s.t==='walk'){
     var li=s.g.steps.map(function(x){return '<li>'+x.cap+'</li>';}).join('')+'<li class="fin">'+s.g.fine.cap+'</li>';
     h='<div class="walk"><div class="screen"><div class="bar"><i></i><i></i><i></i><div class="addr">Registro Convitto · gestionale di prova</div></div>'+
@@ -153,7 +159,7 @@ function build(s){
       '<div class="rip"></div><svg class="mouse off" viewBox="0 0 34 40" aria-hidden="true"><path d="M3 2 L3 32 L11 25 L17 38 L23 35 L17 23 L28 23 Z" fill="#fff" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg>'+
       '<div class="done">✓ Fatto</div></div></div>'+
       '<div class="side"><div class="eyebrow">Operazione '+s.g.id+' di '+TOT+'</div><h3>'+s.g.t+'</h3><p class="t">'+s.g.task+'</p><ol class="steps">'+li+'</ol>'+
-      '<button type="button" class="replay">↻ Rivedi il passo</button></div></div>';
+      APRI('apri')+'<button type="button" class="replay">↻ Rivedi il passo</button></div></div>';
   } else if(s.t==='end'){
     h='<div class="end"><div class="eyebrow rise">Adesso tocca a voi</div><h2 class="rise d1">Missione <em>Convitto</em></h2><ol>'+
       '<li class="rise d2"><span>1</span><div>Prendete il vostro cartellino e aprite Chrome: <code>convitto-costaggini.github.io/formazione/prova</code></div></li>'+
@@ -225,7 +231,7 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='f'||e.key==='F'){full();}
   else if(e.key==='r'||e.key==='R'){if(S[idx].t==='walk')renderWalk(els[idx],S[idx],step,true);}
 });
-stage.addEventListener('click',function(e){if(e.target.closest('button'))return;next();});
+stage.addEventListener('click',function(e){if(e.target.closest('button,a'))return;next();});
 document.getElementById('b-next').addEventListener('click',next);
 document.getElementById('b-prev').addEventListener('click',prev);
 function full(){try{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){});else document.exitFullscreen();}catch(e){}}
