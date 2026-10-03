@@ -157,7 +157,7 @@ p{margin:0;line-height:1.5;}
 .qc .bk a.vai{color:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;}
 .qc .bk a.vai i{font-style:normal;font-size:.7em;}
 .qc .bk a.vai:hover,.qc .bk a.vai:focus-visible{color:#0c150f;outline:2px solid var(--bosco);outline-offset:3px;border-radius:4px;}
-.qc .bk em.u{font-style:normal;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--bosco);opacity:.85;overflow-wrap:anywhere;}
+.qc .bk a.u{text-decoration:underline;text-decoration-thickness:1px;font-style:normal;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--bosco);opacity:.85;overflow-wrap:anywhere;}
 .qc:focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:14px;}
 .qc:focus-visible{outline:3px solid var(--oro-chiaro);outline-offset:4px;border-radius:14px;}
 
@@ -441,7 +441,7 @@ function build(s,i){
   } else if(s.t==='quiz'){
     const base=s.from||0;
     h=`<div class="quiz"><div class="eyebrow rise">Gioco · ${s.round||''}</div><h2 class="rise d1">Dove lo <em>trovo?</em></h2>
-    <div class="qgrid">${qset(s).map((q,k0)=>{const k=base+k0; return `<div role="button" tabindex="0" class="qc rise" style="transition-delay:${.25+k0*.07}s" aria-label="Domanda ${k+1}: ${q[0].replace(/"/g,'')}"><span class="in"><span class="fr"><span class="k">${k+1}</span><p>${q[0]}</p><small>Tocca per la risposta</small></span><span class="bk"><small>Risposta</small><p><a class="vai" href="${SITO}${q[3]}" target="_blank" rel="noopener" tabindex="-1">${q[1]} <i>↗</i></a></p><span>${q[2]}</span><em class="u">${SITO.replace('https://','')}${q[3]}</em></span></span></div>`;}).join('')}</div></div>`;
+    <div class="qgrid">${qset(s).map((q,k0)=>{const k=base+k0; return `<div role="button" tabindex="0" class="qc rise" style="transition-delay:${.25+k0*.07}s" aria-label="Domanda ${k+1}: ${q[0].replace(/"/g,'')}"><span class="in"><span class="fr"><span class="k">${k+1}</span><p>${q[0]}</p><small>Tocca per la risposta</small></span><span class="bk"><small>Risposta</small><p><a class="vai" href="${SITO}${q[3]}" target="_blank" rel="noopener" tabindex="-1">${q[1]} <i>↗</i></a></p><span>${q[2]}</span><a class="vai u" href="${SITO}${q[3]}" target="_blank" rel="noopener" tabindex="-1">${SITO.replace('https://','')}${q[3]}</a></span></span></div>`;}).join('')}</div></div>`;
   } else if(s.t==='stats'){
     const mx=Math.max(...s.weeks.map(w=>w[1]));
     h=`<div class="stats"><div class="top"><div><div class="eyebrow rise">${s.eb}</div><h2 class="rise d1">${s.h}</h2></div><p class="src rise d2">${s.src}</p></div>
