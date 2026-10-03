@@ -154,6 +154,11 @@ p{margin:0;line-height:1.5;}
 .qc .bk small{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
 .qc .bk p{font-family:var(--f-display);font-size:30px;line-height:1.12;font-weight:600;}
 .qc .bk span{font-size:16px;line-height:1.35;}
+.qc .bk a.vai{color:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;}
+.qc .bk a.vai i{font-style:normal;font-size:.7em;}
+.qc .bk a.vai:hover,.qc .bk a.vai:focus-visible{color:#0c150f;outline:2px solid var(--bosco);outline-offset:3px;border-radius:4px;}
+.qc .bk em.u{font-style:normal;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--bosco);opacity:.85;overflow-wrap:anywhere;}
+.qc:focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:14px;}
 .qc:focus-visible{outline:3px solid var(--oro-chiaro);outline-offset:4px;border-radius:14px;}
 
 /* QR */
@@ -358,31 +363,32 @@ const IMG=n=>'img/'+n+'.webp';
 const esc=s=>s; // contenuti statici scritti a mano
 let idx=0, step=0; const els=[];
 const QUIZ=[
- ["Una mamma chiede cosa mettere in valigia per il primo giorno.","Per i Genitori","Sezione Checklist, oltre ad Accoglienza &amp; Modulistica."],
- ["Un papà vuole sapere quanto costa il Convitto.","Come iscriversi","Oppure “In 2 minuti”, domanda “Quanto costa stare in Convitto?”."],
- ["Una famiglia vuole vedere le camere prima di iscriversi.","Tour virtuale","E per la visita dal vivo: Orientamento &amp; Open Day."],
- ["Un ragazzo racconta di prese in giro in una chat di gruppo.","Bullismo e Cyberbullismo","Menu Servizi: cosa fare, a chi rivolgersi, contatti."],
- ["Un ex convittore vuole lasciare un pensiero.","Il Muro dei Ricordi","Dalla pagina La nostra Comunità."],
- ["A che ora è la cena?","Servizi &amp; spazi","Sezione Ristorazione: cena dalle 19:00 alle 20:00."],
- ["Serve la scheda sanitaria da consegnare all'accoglienza.","Accoglienza &amp; Modulistica","Da stampare, far firmare al medico e consegnare."],
- ["Un genitore chiede il Regolamento “in parole semplici”.","Il Regolamento spiegato","Menu Regolamenti &amp; Documenti."],
- ["Una famiglia vuole che il figlio rientri la domenica sera invece del lunedì.","Richiesta di Rientro Domenicale","Da Accoglienza &amp; Modulistica: si compila, si stampa, si consegna agli Educatori."],
- ["Servono i moduli per la libera uscita e le altre autorizzazioni.","Autorizzazioni","Da Accoglienza &amp; Modulistica: dati inseriti una volta, riportati in tutti i moduli."],
- ["Un ragazzo di terza media non sa se il Convitto fa per lui.","Il Convitto fa per me?","12 domande in 3 minuti, da Orientamento &amp; Open Day."],
- ["Un genitore arriva da Roma con i mezzi pubblici.","Come arrivare","Linea Cotral sulla Salaria, capolinea sulla via del Convitto."],
- ["Una famiglia vuole prenotare una visita al Convitto.","Orientamento &amp; Open Day","Pagina Open Day: conto alla rovescia e modulo “Richiesta Visita”."],
- ["Un genitore chiede cosa si mangia questa settimana.","Menu della Settimana","Menu Novità, aggiornato settimana per settimana."],
- ["Un genitore che non alloggia il figlio chiede di mensa e studio pomeridiano.","Semiconvitto","Menu Servizi: attivo dal 12 ottobre, adesione entro il 5 ottobre."],
- ["Un collega vuole segnare in agenda la prossima festa del Convitto.","Calendario eventi","Menu Novità: ogni evento si esporta nel proprio calendario (.ics)."],
- ["Un genitore chiede a che ora si svegliano i ragazzi.","Una giornata tipo","Menu Il Convitto: sveglia alle 6:30, poi la giornata ora per ora."],
- ["Serve il numero di telefono del Convitto.","Contattaci","0746 296862, con telefono dell'Istituto, email e PEC."],
- ["Un avvocato deve mandare una comunicazione ufficiale con valore legale.","PEC","Nella barra in alto di ogni pagina, e in Contattaci: rirh010007@pec.istruzione.it."],
- ["La famiglia deve firmare gli impegni reciproci con il Convitto.","Patto di Corresponsabilità","Da Accoglienza &amp; Modulistica: si legge, si firma, si consegna agli Educatori."],
- ["Un genitore vuole inserire online i dati del figlio prima dell'accoglienza.","Scheda Informativa del Convittore","I dati arrivano alla segreteria; poi si stampa, si firma e si consegna."],
- ["Una famiglia chiede cosa promette la scuola nel PTOF.","Il PTOF spiegato","Menu Regolamenti &amp; Documenti: 6 sezioni, circa 8 minuti di lettura."],
- ["Un ex convittore vuole comparire nella galleria degli alumni.","Alumni › Unisciti","Da La nostra Comunità: la scheda si vede in anteprima mentre si scrive."],
- ["Un genitore vuole sapere chi sono gli educatori e che ruolo hanno.","Gli Educatori","Menu Il Convitto: il profilo previsto dal contratto e i volti del gruppo."]];
+ ["Una mamma chiede cosa mettere in valigia per il primo giorno.","Per i Genitori","Sezione Checklist, oltre ad Accoglienza &amp; Modulistica.","genitori.html"],
+ ["Un papà vuole sapere quanto costa il Convitto.","Come iscriversi","Oppure “In 2 minuti”, domanda “Quanto costa stare in Convitto?”.","ammissione.html"],
+ ["Una famiglia vuole vedere le camere prima di iscriversi.","Tour virtuale","E per la visita dal vivo: Orientamento &amp; Open Day.","tour-virtuale.html"],
+ ["Un ragazzo racconta di prese in giro in una chat di gruppo.","Bullismo e Cyberbullismo","Menu Servizi: cosa fare, a chi rivolgersi, contatti.","bullismo.html"],
+ ["Un ex convittore vuole lasciare un pensiero.","Il Muro dei Ricordi","Dalla pagina La nostra Comunità.","ricordi.html"],
+ ["A che ora è la cena?","Servizi &amp; spazi","Sezione Ristorazione: cena dalle 19:00 alle 20:00.","servizi.html"],
+ ["Serve la scheda sanitaria da consegnare all'accoglienza.","Accoglienza &amp; Modulistica","Da stampare, far firmare al medico e consegnare.","accoglienza.html"],
+ ["Un genitore chiede il Regolamento “in parole semplici”.","Il Regolamento spiegato","Menu Regolamenti &amp; Documenti.","regolamento-guida.html"],
+ ["Una famiglia vuole che il figlio rientri la domenica sera invece del lunedì.","Richiesta di Rientro Domenicale","Da Accoglienza &amp; Modulistica: si compila, si stampa, si consegna agli Educatori.","richiesta-rientro-domenicale.html"],
+ ["Servono i moduli per la libera uscita e le altre autorizzazioni.","Autorizzazioni","Da Accoglienza &amp; Modulistica: dati inseriti una volta, riportati in tutti i moduli.","autorizzazioni.html"],
+ ["Un ragazzo di terza media non sa se il Convitto fa per lui.","Il Convitto fa per me?","12 domande in 3 minuti, da Orientamento &amp; Open Day.","fa-per-me.html"],
+ ["Un genitore arriva da Roma con i mezzi pubblici.","Come arrivare","Linea Cotral sulla Salaria, capolinea sulla via del Convitto.","come-arrivare.html"],
+ ["Una famiglia vuole prenotare una visita al Convitto.","Orientamento &amp; Open Day","Pagina Open Day: conto alla rovescia e modulo “Richiesta Visita”.","openday.html"],
+ ["Un genitore chiede cosa si mangia questa settimana.","Menu della Settimana","Menu Novità, aggiornato settimana per settimana.","menu-settimana.html"],
+ ["Un genitore che non alloggia il figlio chiede di mensa e studio pomeridiano.","Semiconvitto","Menu Servizi: attivo dal 12 ottobre, adesione entro il 5 ottobre.","semiconvitto.html"],
+ ["Un collega vuole segnare in agenda la prossima festa del Convitto.","Calendario eventi","Menu Novità: ogni evento si esporta nel proprio calendario (.ics).","calendario.html"],
+ ["Un genitore chiede a che ora si svegliano i ragazzi.","Una giornata tipo","Menu Il Convitto: sveglia alle 6:30, poi la giornata ora per ora.","giornata-tipo.html"],
+ ["Serve il numero di telefono del Convitto.","Contattaci","0746 296862, con telefono dell'Istituto, email e PEC.","contatti.html"],
+ ["Un avvocato deve mandare una comunicazione ufficiale con valore legale.","PEC","Nella barra in alto di ogni pagina, e in Contattaci: rirh010007@pec.istruzione.it.","contatti.html"],
+ ["La famiglia deve firmare gli impegni reciproci con il Convitto.","Patto di Corresponsabilità","Da Accoglienza &amp; Modulistica: si legge, si firma, si consegna agli Educatori.","patto-di-corresponsabilita.html"],
+ ["Un genitore vuole inserire online i dati del figlio prima dell'accoglienza.","Scheda Informativa del Convittore","I dati arrivano alla segreteria; poi si stampa, si firma e si consegna.","scheda-informativa-convittore.html"],
+ ["Una famiglia chiede cosa promette la scuola nel PTOF.","Il PTOF spiegato","Menu Regolamenti &amp; Documenti: 6 sezioni, circa 8 minuti di lettura.","ptof-guida.html"],
+ ["Un ex convittore vuole comparire nella galleria degli alumni.","Alumni › Unisciti","Da La nostra Comunità: la scheda si vede in anteprima mentre si scrive.","iscriviti-alumni.html"],
+ ["Un genitore vuole sapere chi sono gli educatori e che ruolo hanno.","Gli Educatori","Menu Il Convitto: il profilo previsto dal contratto e i volti del gruppo.","educatori.html"]];
 
+const SITO='https://convitto.alberghierorieti.edu.it/';
 const qset=s=>QUIZ.slice(s.from||0,s.to||QUIZ.length);
 function nsteps(s){ if(s.t==='shot') return s.steps.length; if(s.t==='quiz') return qset(s).length+1; return 1; }
 
@@ -435,7 +441,7 @@ function build(s,i){
   } else if(s.t==='quiz'){
     const base=s.from||0;
     h=`<div class="quiz"><div class="eyebrow rise">Gioco · ${s.round||''}</div><h2 class="rise d1">Dove lo <em>trovo?</em></h2>
-    <div class="qgrid">${qset(s).map((q,k0)=>{const k=base+k0; return `<button type="button" class="qc rise" style="transition-delay:${.25+k0*.07}s" aria-label="Domanda ${k+1}: ${q[0].replace(/"/g,'')}"><span class="in"><span class="fr"><span class="k">${k+1}</span><p>${q[0]}</p><small>Tocca per la risposta</small></span><span class="bk"><small>Risposta</small><p>${q[1]}</p><span>${q[2]}</span></span></span></button>`;}).join('')}</div></div>`;
+    <div class="qgrid">${qset(s).map((q,k0)=>{const k=base+k0; return `<div role="button" tabindex="0" class="qc rise" style="transition-delay:${.25+k0*.07}s" aria-label="Domanda ${k+1}: ${q[0].replace(/"/g,'')}"><span class="in"><span class="fr"><span class="k">${k+1}</span><p>${q[0]}</p><small>Tocca per la risposta</small></span><span class="bk"><small>Risposta</small><p><a class="vai" href="${SITO}${q[3]}" target="_blank" rel="noopener" tabindex="-1">${q[1]} <i>↗</i></a></p><span>${q[2]}</span><em class="u">${SITO.replace('https://','')}${q[3]}</em></span></span></div>`;}).join('')}</div></div>`;
   } else if(s.t==='stats'){
     const mx=Math.max(...s.weeks.map(w=>w[1]));
     h=`<div class="stats"><div class="top"><div><div class="eyebrow rise">${s.eb}</div><h2 class="rise d1">${s.h}</h2></div><p class="src rise d2">${s.src}</p></div>
@@ -483,7 +489,7 @@ function render(){
     d.querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<step?'seen':(i===step?'cur':'');});
   }
   if(s.t==='quiz'){
-    d.querySelectorAll('.qc').forEach((c,i)=>c.classList.toggle('flip',i<step));
+    d.querySelectorAll('.qc').forEach((c,i)=>{c.classList.toggle('flip',i<step); c.querySelectorAll('a.vai').forEach(x=>x.tabIndex=i<step?0:-1);});
   }
   const ch=s.ch!=null?s.ch:(s.n||0);
   hud.querySelector('.ch').textContent=ch?`${['','I','II','III','IV','V','VI'][ch]} · ${CH[ch]}`:'';
@@ -500,12 +506,13 @@ function go(i){ idx=Math.max(0,Math.min(SLIDES.length-1,i)); step=0; render(); }
 stage.addEventListener('click',e=>{
   const a=e.target.closest('[data-go]');
   if(a){ const n=+a.dataset.go; go(SLIDES.findIndex(s=>s.t==='chap'&&s.n===n)); return; }
+  if(e.target.closest('a.vai')){ e.stopPropagation(); return; }
   const q=e.target.closest('.qc');
-  if(q){ q.classList.toggle('flip'); return; }
+  if(q){ q.classList.toggle('flip'); const fl=q.classList.contains('flip'); q.querySelectorAll('a.vai').forEach(x=>x.tabIndex=fl?0:-1); return; }
   if(e.target.closest('#cmp')) return;
   if(e.target.closest('.shot .browser')) next();
 });
-stage.addEventListener('keydown',e=>{ const a=e.target.closest('[data-go]'); if(a&&(e.key==='Enter')){a.click();} });
+stage.addEventListener('keydown',e=>{ const a=e.target.closest('[data-go]'); if(a&&(e.key==='Enter')){a.click();} const q=e.target.closest('.qc'); if(q&&e.target===q&&(e.key==='Enter')){ e.preventDefault(); e.stopPropagation(); q.click(); } });
 
 /* confronto trascinabile */
 const cmp=document.getElementById('cmp');
